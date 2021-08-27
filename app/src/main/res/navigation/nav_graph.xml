@@ -9,5 +9,7 @@
         android:id="@+id/homeScreen"
         android:name="app.alexanastasyev.planner.ui.home.HomeScreen"
         android:label="HomeScreen"
-        tools:layout="@layout/screen_home"/>
+        tools:layout="@layout/screen_home">
+    </fragment>
+
 </navigation>

@@ -25,17 +25,15 @@ class HomeScreen : Fragment(), HomeView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        displayDate()
+        presenter.init()
     }
 
-    private fun displayDate() {
-        val calendar = Calendar.getInstance()
-        val date = calendar.time
+    override fun displayDate(dateTime: Date) {
+        val dateAsString = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(dateTime)
+        val dayOfWeekAsString = SimpleDateFormat(DAY_OF_WEEK_FORMAT, Locale.getDefault()).format(dateTime)
 
-        val dateAsString = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(date)
-        val dayOfWeekAsString = SimpleDateFormat(DAY_OF_WEEK_FORMAT, Locale.getDefault()).format(date)
-
-        binding.textViewToday.text = dateAsString
-        binding.textViewDayOfWeek.text = dayOfWeekAsString
+        binding.textViewMainScreenDate.text = dateAsString
+        binding.textViewMainScreenDayOfWeek.text = dayOfWeekAsString
     }
+
 }

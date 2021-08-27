@@ -1,5 +1,7 @@
 package app.alexanastasyev.planner.ui.home
 
-interface HomeView {
+import java.util.*
 
+interface HomeView {
+    fun displayDate(dateTime: Date)
 }
