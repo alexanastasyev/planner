@@ -1,19 +1,18 @@
 package app.alexanastasyev.planner.ui.screens.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import app.alexanastasyev.planner.MainActivity
+import app.alexanastasyev.planner.R
 import app.alexanastasyev.planner.databinding.ScreenHomeBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 class HomeScreen : Fragment(), HomeView {
-    companion object {
-        private const val DATE_FORMAT = "d MMMM"
-        private const val DAY_OF_WEEK_FORMAT = "EEEE"
-    }
 
     private lateinit var binding: ScreenHomeBinding
     private val presenter = HomePresenter(this)
@@ -28,11 +27,11 @@ class HomeScreen : Fragment(), HomeView {
         presenter.init()
     }
 
-    override fun displayDate(dateTime: Date) {
-        val dateAsString = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(dateTime)
-        val dayOfWeekAsString = SimpleDateFormat(DAY_OF_WEEK_FORMAT, Locale.getDefault()).format(dateTime)
-
-        binding.textView.text = "HOME SCREEN\nDate: $dateAsString\nDay: $dayOfWeekAsString"
+    override fun setTitle(title: String) {
+        (activity as MainActivity).setActionBarTitle(title)
     }
 
+    override fun provideContext(): Context {
+        return requireContext()
+    }
 }

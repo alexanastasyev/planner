@@ -13,11 +13,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var binding: ActivityMainBinding
 
+    fun setActionBarTitle(title: String) {
+        supportActionBar?.title = title
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         configureMenu()
+        configureActionBar()
     }
 
     private fun configureMenu() {
@@ -27,6 +32,10 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setOnMenuItemClickListener()
+    }
+
+    private fun configureActionBar() {
+
     }
 
     private fun setOnMenuItemClickListener() {

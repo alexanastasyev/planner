@@ -1,11 +1,13 @@
 package app.alexanastasyev.planner.ui.screens.create
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import androidx.fragment.app.Fragment
+import app.alexanastasyev.planner.MainActivity
 import app.alexanastasyev.planner.databinding.ScreenCreateNoteBinding
 
 class CreateNoteScreen : Fragment(), CreateNoteView {
@@ -39,5 +41,13 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
 
     private fun hideDatePicker() {
         binding.datePicker.visibility = View.GONE
+    }
+
+    override fun setTitle(title: String) {
+        (activity as MainActivity).setActionBarTitle(title)
+    }
+
+    override fun provideContext(): Context {
+        return requireContext()
     }
 }

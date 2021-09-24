@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/beige_dark</item>
         <!-- Customize your theme here. -->
+        <item name="toolbarStyle">@style/MyToolbar</item>
     </style>
 
 </resources>
