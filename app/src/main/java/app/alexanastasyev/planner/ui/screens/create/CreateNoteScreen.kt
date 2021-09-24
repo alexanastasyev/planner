@@ -9,6 +9,10 @@ import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import app.alexanastasyev.planner.MainActivity
 import app.alexanastasyev.planner.databinding.ScreenCreateNoteBinding
+import app.alexanastasyev.planner.domain.Note
+import app.alexanastasyev.planner.domain.Priority
+import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 class CreateNoteScreen : Fragment(), CreateNoteView {
     private lateinit var binding: ScreenCreateNoteBinding
@@ -23,6 +27,7 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
         super.onViewCreated(view, savedInstanceState)
         presenter.init()
         setOnCheckBoxTimeListener()
+        setOnButtonSaveClickListener()
     }
 
     private fun setOnCheckBoxTimeListener() {
@@ -43,11 +48,38 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
         binding.datePicker.visibility = View.GONE
     }
 
+    private fun setOnButtonSaveClickListener() {
+        binding.buttonSave.setOnClickListener {
+            val text = binding.editTextNoteText.text.toString()
+            val priority = Priority.MEDIUM
+            val date = if (binding.checkBoxTime.isChecked) {
+                val calendar = Calendar.getInstance()
+                calendar.set(Calendar.DAY_OF_MONTH, binding.datePicker.dayOfMonth)
+                calendar.set(Calendar.MONTH, binding.datePicker.month)
+                calendar.set(Calendar.YEAR, binding.datePicker.year)
+                calendar.timeInMillis
+            } else {
+                null
+            }
+            presenter.saveNote(
+                Note(
+                    text = text,
+                    date = date,
+                    priority = priority
+                )
+            )
+        }
+    }
+
     override fun setTitle(title: String) {
         (activity as MainActivity).setActionBarTitle(title)
     }
 
     override fun provideContext(): Context {
         return requireContext()
+    }
+
+    override fun showMessage(text: String) {
+        Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
     }
 }

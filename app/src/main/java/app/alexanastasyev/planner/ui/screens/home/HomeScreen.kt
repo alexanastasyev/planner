@@ -7,10 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import app.alexanastasyev.planner.MainActivity
-import app.alexanastasyev.planner.R
 import app.alexanastasyev.planner.databinding.ScreenHomeBinding
-import java.text.SimpleDateFormat
-import java.util.*
+import app.alexanastasyev.planner.domain.Note
+import com.google.android.material.snackbar.Snackbar
 
 class HomeScreen : Fragment(), HomeView {
 
@@ -33,5 +32,15 @@ class HomeScreen : Fragment(), HomeView {
 
     override fun provideContext(): Context {
         return requireContext()
+    }
+
+    override fun showNotes(notes: List<Note>) {
+        binding.recyclerViewNotes.adapter = NotesAdapter(notes) {}
+        binding.recyclerViewNotes.visibility = View.VISIBLE
+        binding.progressBarHome.visibility = View.INVISIBLE
+    }
+
+    override fun showError(text: String) {
+        Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
     }
 }
