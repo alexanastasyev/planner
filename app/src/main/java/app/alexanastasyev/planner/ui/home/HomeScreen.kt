@@ -32,8 +32,7 @@ class HomeScreen : Fragment(), HomeView {
         val dateAsString = SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(dateTime)
         val dayOfWeekAsString = SimpleDateFormat(DAY_OF_WEEK_FORMAT, Locale.getDefault()).format(dateTime)
 
-        binding.textViewMainScreenDate.text = dateAsString
-        binding.textViewMainScreenDayOfWeek.text = dayOfWeekAsString
+        binding.textView.text = "HOME SCREEN\nDate: $dateAsString\nDay: $dayOfWeekAsString"
     }
 
 }
