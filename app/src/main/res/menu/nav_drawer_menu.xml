@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuItemHome"
-        android:title="@string/main"/>
-
-    <item
         android:id="@+id/menuItemCreateNote"
         android:title="@string/create_note"/>
+
+    <item
+        android:id="@+id/menuItemHome"
+        android:title="@string/main"/>
 
 </menu>

@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
     private fun setOnMenuItemClickListener() {
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.menuItemHome -> openHomeScreen()
                 R.id.menuItemCreateNote -> openCreateNoteScreen()
+                R.id.menuItemHome -> openHomeScreen()
             }
             true
         }
