@@ -3,16 +3,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
+        android:id="@+id/textViewNoteTextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CREATE NOTE"
-        android:textSize="40sp"
+        android:text="@string/note_text"
+        android:textColor="@color/brown_grey"
+        android:textSize="14sp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewNoteText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintDimensionRatio="1.552:1"
+        app:layout_constraintTop_toBottomOf="@id/textViewNoteTextTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/editTextNoteText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/grey_medium"
+            android:importantForAutofill="no"
+            android:textColor="@color/grey_dark"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:inputType="textMultiLine"
+            tools:text="@tools:sample/lorem/random"
+            tools:ignore="LabelFor" />
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
