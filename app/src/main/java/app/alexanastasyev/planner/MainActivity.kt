@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.navigation.findNavController
 import app.alexanastasyev.planner.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -16,20 +17,39 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        configureMenu()
+    }
 
+    private fun configureMenu() {
         toggle = ActionBarDrawerToggle(this, binding.drawerLayout, R.string.open, R.string.close)
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setOnMenuItemClickListener()
+    }
+
+    private fun setOnMenuItemClickListener() {
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.item1 -> Snackbar.make(binding.root, "Clicked item 1", Snackbar.LENGTH_SHORT).show()
-                R.id.item2 -> Snackbar.make(binding.root, "Clicked item 2", Snackbar.LENGTH_SHORT).show()
-                R.id.item3 -> Snackbar.make(binding.root, "Clicked item 3", Snackbar.LENGTH_SHORT).show()
+                R.id.menuItemHome -> openHomeScreen()
+                R.id.menuItemCreateNote -> openCreateNoteScreen()
             }
             true
         }
+    }
+
+    private fun openHomeScreen() {
+        binding.navHostFragment.findNavController().navigate(R.id.homeScreen)
+        hideMenu()
+    }
+
+    private fun openCreateNoteScreen() {
+        binding.navHostFragment.findNavController().navigate(R.id.createNoteScreen)
+        hideMenu()
+    }
+
+    private fun hideMenu() {
+        binding.drawerLayout.closeDrawers()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

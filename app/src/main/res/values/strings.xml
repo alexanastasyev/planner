@@ -2,4 +2,6 @@
     <string name="app_name">Planner</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="create_note">New</string>
+    <string name="main">Main</string>
 </resources>

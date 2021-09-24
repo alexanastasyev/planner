@@ -1,4 +1,4 @@
-package app.alexanastasyev.planner.ui.home
+package app.alexanastasyev.planner.ui.screens.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
