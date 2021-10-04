@@ -1,6 +1,5 @@
 package app.alexanastasyev.planner.ui.screens.home
 
-import android.util.Log
 import app.alexanastasyev.planner.domain.Note
 import app.alexanastasyev.planner.utils.DatabaseUtils
 import app.alexanastasyev.planner.ui.Presenter

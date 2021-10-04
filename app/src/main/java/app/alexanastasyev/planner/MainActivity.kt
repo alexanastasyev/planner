@@ -49,11 +49,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openHomeScreen() {
+        binding.navHostFragment.findNavController().popBackStack()
         binding.navHostFragment.findNavController().navigate(R.id.homeScreen)
         hideMenu()
     }
 
     private fun openCreateNoteScreen() {
+        binding.navHostFragment.findNavController().popBackStack()
         binding.navHostFragment.findNavController().navigate(R.id.createNoteScreen)
         hideMenu()
     }

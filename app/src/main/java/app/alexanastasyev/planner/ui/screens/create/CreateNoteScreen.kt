@@ -26,12 +26,12 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.init()
-        setOnCheckBoxTimeListener()
+        setOnCheckBoxDateListener()
         setOnButtonSaveClickListener()
     }
 
-    private fun setOnCheckBoxTimeListener() {
-        binding.checkBoxTime.setOnClickListener {
+    private fun setOnCheckBoxDateListener() {
+        binding.checkBoxDate.setOnClickListener {
             if ((it as CheckBox).isChecked) {
                 showDatePicker()
             } else {
@@ -51,8 +51,13 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
     private fun setOnButtonSaveClickListener() {
         binding.buttonSave.setOnClickListener {
             val text = binding.editTextNoteText.text.toString()
-            val priority = Priority.MEDIUM
-            val date = if (binding.checkBoxTime.isChecked) {
+            val priority = when {
+                binding.radioButtonLow.isChecked -> Priority.LOW
+                binding.radioButtonMedium.isChecked -> Priority.MEDIUM
+                binding.radioButtonHigh.isChecked -> Priority.HIGH
+                else -> Priority.MEDIUM
+            }
+            val date = if (binding.checkBoxDate.isChecked) {
                 val calendar = Calendar.getInstance()
                 calendar.set(Calendar.DAY_OF_MONTH, binding.datePicker.dayOfMonth)
                 calendar.set(Calendar.MONTH, binding.datePicker.month)

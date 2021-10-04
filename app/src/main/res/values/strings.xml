@@ -6,8 +6,13 @@
     <string name="main">Home</string>
     <string name="note_text">Note text:</string>
     <string name="date">Date</string>
+    <string name="time">Time</string>
     <string name="save">Save</string>
     <string name="error_load_notes">Error! Cannot load notes.</string>
     <string name="note_saved">Note saved</string>
     <string name="no_date">No date</string>
+    <string name="priority">Priority:</string>
+    <string name="low">low</string>
+    <string name="medium">medium</string>
+    <string name="high">high</string>
 </resources>
