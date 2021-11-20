@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import app.alexanastasyev.planner.MainActivity
 import app.alexanastasyev.planner.databinding.ScreenHomeBinding
 import app.alexanastasyev.planner.domain.Note
@@ -34,8 +36,14 @@ class HomeScreen : Fragment(), HomeView {
         return requireContext()
     }
 
+    override fun provideNavController(): NavController {
+        return findNavController()
+    }
+
     override fun showNotes(notes: List<Note>) {
-        binding.recyclerViewNotes.adapter = NotesAdapter(notes) {}
+        binding.recyclerViewNotes.adapter = NotesAdapter(notes) { position ->
+            presenter.noteClicked(position)
+        }
         binding.recyclerViewNotes.visibility = View.VISIBLE
         binding.progressBarHome.visibility = View.INVISIBLE
     }

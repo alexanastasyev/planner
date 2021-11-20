@@ -3,4 +3,12 @@
     <style name="MyToolbar" parent="Widget.MaterialComponents.Toolbar.Primary">
         <item name="titleTextColor">@color/brown_grey</item>
     </style>
+
+    <style name="RoundedCornersDialog" parent="@style/Theme.MaterialComponents.Dialog">
+        <item name="dialogCornerRadius">20dp</item>
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+        <item name="android:textColorPrimary">@color/grey_dark</item>
+        <item name="android:textColorSecondary">@color/beige_dark</item>
+    </style>
 </resources>

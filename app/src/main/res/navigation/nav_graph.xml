@@ -10,11 +10,29 @@
         android:name="app.alexanastasyev.planner.ui.screens.home.HomeScreen"
         android:label="HomeScreen"
         tools:layout="@layout/screen_home">
+        <action
+            android:id="@+id/action_homeScreen_to_noteScreen"
+            app:destination="@id/noteScreen" />
     </fragment>
     <fragment
         android:id="@+id/createNoteScreen"
         android:name="app.alexanastasyev.planner.ui.screens.create.CreateNoteScreen"
         android:label="CreateNoteScreen"
-        tools:layout="@layout/screen_create_note"/>
+        tools:layout="@layout/screen_create_note">
+        <action
+            android:id="@+id/action_createNoteScreen_to_dateTimePickerDialog"
+            app:destination="@id/dateTimePickerDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/noteScreen"
+        android:name="app.alexanastasyev.planner.ui.screens.note.NoteScreen"
+        android:label="NoteScreen"
+        tools:layout="@layout/screen_note"/>
+    <dialog
+        android:id="@+id/dateTimePickerDialog"
+        android:name="app.alexanastasyev.planner.ui.dialogs.DateTimePickerDialog"
+        android:label="DateTimePickerDialog"
+        tools:layout="@layout/dialog_date_time">
+    </dialog>
 
 </navigation>

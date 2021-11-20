@@ -18,7 +18,7 @@ class NotesAdapter(
 
     companion object {
         private const val DATE_FORMAT = "dd.MM.yyyy"
-        private const val TIME_FORMAT = "hh:mm"
+        private const val TIME_FORMAT = "HH:mm"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {

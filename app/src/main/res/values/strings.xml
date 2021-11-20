@@ -16,4 +16,6 @@
     <string name="medium">medium</string>
     <string name="high">high</string>
     <string name="note_text_is_empty">Note text is empty!</string>
+    <string name="note_view">View note</string>
+    <string name="ok">Ok</string>
 </resources>

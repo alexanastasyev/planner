@@ -2,6 +2,7 @@ package app.alexanastasyev.planner.ui.screens.create
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,12 +12,22 @@ import app.alexanastasyev.planner.MainActivity
 import app.alexanastasyev.planner.databinding.ScreenCreateNoteBinding
 import app.alexanastasyev.planner.domain.Note
 import app.alexanastasyev.planner.domain.Priority
+import app.alexanastasyev.planner.utils.DateFormatter
 import com.google.android.material.snackbar.Snackbar
-import java.util.*
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import app.alexanastasyev.planner.R
+import app.alexanastasyev.planner.utils.NavigationUtils
+
 
 class CreateNoteScreen : Fragment(), CreateNoteView {
+    companion object {
+        private const val DATE_TIME_FORMAT = "dd.MM.yyyy, HH:mm"
+    }
+
     private lateinit var binding: ScreenCreateNoteBinding
     private val presenter = CreateNotePresenter(this)
+    private var time = System.currentTimeMillis()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = ScreenCreateNoteBinding.inflate(inflater)
@@ -26,26 +37,42 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.init()
-        setOnCheckBoxDateListener()
+        initTime()
+        setOnCheckBoxTimeListener()
+        setOnTimeClickListener()
         setOnButtonSaveClickListener()
     }
 
-    private fun setOnCheckBoxDateListener() {
-        binding.checkBoxDate.setOnClickListener {
+    private fun initTime() {
+        binding.textViewTime.text = DateFormatter.formatDate(time, DATE_TIME_FORMAT)
+    }
+
+    private fun setOnCheckBoxTimeListener() {
+        binding.checkBoxTime.setOnClickListener {
             if ((it as CheckBox).isChecked) {
-                showDatePicker()
+                showTime()
             } else {
-                hideDatePicker()
+                hideTime()
             }
         }
     }
 
-    private fun showDatePicker() {
-        binding.datePicker.visibility = View.VISIBLE
+    private fun showTime() {
+        binding.textViewTime.visibility = View.VISIBLE
     }
 
-    private fun hideDatePicker() {
-        binding.datePicker.visibility = View.GONE
+    private fun hideTime() {
+        binding.textViewTime.visibility = View.INVISIBLE
+    }
+
+    private fun setOnTimeClickListener() {
+        binding.textViewTime.setOnClickListener {
+            NavigationUtils.onTimeSelected = { time ->
+                this.time = time
+                initTime()
+            }
+            findNavController().navigate(R.id.action_createNoteScreen_to_dateTimePickerDialog)
+        }
     }
 
     private fun setOnButtonSaveClickListener() {
@@ -57,12 +84,8 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
                 binding.radioButtonHigh.isChecked -> Priority.HIGH
                 else -> Priority.MEDIUM
             }
-            val date = if (binding.checkBoxDate.isChecked) {
-                val calendar = Calendar.getInstance()
-                calendar.set(Calendar.DAY_OF_MONTH, binding.datePicker.dayOfMonth)
-                calendar.set(Calendar.MONTH, binding.datePicker.month)
-                calendar.set(Calendar.YEAR, binding.datePicker.year)
-                calendar.timeInMillis
+            val date = if (binding.checkBoxTime.isChecked) {
+                time
             } else {
                 null
             }
@@ -82,6 +105,10 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
 
     override fun provideContext(): Context {
         return requireContext()
+    }
+
+    override fun provideNavController(): NavController {
+        return findNavController()
     }
 
     override fun showMessage(text: String) {
