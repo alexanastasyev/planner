@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/createNoteScreen"
-        android:name="app.alexanastasyev.planner.ui.screens.create.CreateNoteScreen"
+        android:name="app.alexanastasyev.planner.ui.screens.create_edit.CreateNoteScreen"
         android:label="CreateNoteScreen"
-        tools:layout="@layout/screen_create_note">
+        tools:layout="@layout/screen_create_edit_note">
         <action
             android:id="@+id/action_createNoteScreen_to_dateTimePickerDialog"
             app:destination="@id/dateTimePickerDialog" />
@@ -43,9 +43,9 @@
     </dialog>
     <fragment
         android:id="@+id/editNoteScreen"
-        android:name="app.alexanastasyev.planner.ui.screens.edit.EditNoteScreen"
+        android:name="app.alexanastasyev.planner.ui.screens.create_edit.EditNoteScreen"
         android:label="EditNoteScreen"
-        tools:layout="@layout/screen_create_note">
+        tools:layout="@layout/screen_create_edit_note">
         <action
             android:id="@+id/action_editNoteScreen_to_dateTimePickerDialog"
             app:destination="@id/dateTimePickerDialog" />

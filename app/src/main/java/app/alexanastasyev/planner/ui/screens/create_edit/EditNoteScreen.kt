@@ -1,25 +1,13 @@
-package app.alexanastasyev.planner.ui.screens.edit
+package app.alexanastasyev.planner.ui.screens.create_edit
 
-import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import androidx.navigation.fragment.findNavController
-import app.alexanastasyev.planner.R
 import app.alexanastasyev.planner.domain.Note
 import app.alexanastasyev.planner.domain.Priority
-import app.alexanastasyev.planner.ui.screens.create.CreateNoteScreen
-import app.alexanastasyev.planner.utils.NavigationUtils
 import app.alexanastasyev.planner.utils.NotesRepository
 
-class EditNoteScreen : CreateNoteScreen() {
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        this.setTitle(getString(R.string.edit_note))
-        fillViews()
-        changeButtonClickListener()
-    }
-
-    private fun fillViews() {
+class EditNoteScreen : AbstractCreateEditScreen() {
+    override fun fillViews() {
         val note = NotesRepository.getCurrentNote()
         binding.editTextNoteText.setText(note.text, TextView.BufferType.EDITABLE)
         note.date?.let { date ->
@@ -35,7 +23,7 @@ class EditNoteScreen : CreateNoteScreen() {
         }
     }
 
-    private fun changeButtonClickListener() {
+    override fun setOnButtonSaveClickListener() {
         binding.buttonSave.setOnClickListener {
             val text = binding.editTextNoteText.text.toString()
             val priority = when {

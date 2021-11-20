@@ -2,7 +2,7 @@
     <string name="app_name">Planner</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <string name="create_note">New note</string>
+    <string name="create_note">Note</string>
     <string name="main">Home</string>
     <string name="note_text">Note text:</string>
     <string name="date">Date</string>
@@ -18,7 +18,6 @@
     <string name="note_text_is_empty">Note text is empty!</string>
     <string name="note_view">View note</string>
     <string name="ok">Ok</string>
-    <string name="edit_note">Edit note</string>
     <string name="do_you_want_to_delete_this_note">Delete this note?</string>
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>

@@ -1,4 +1,4 @@
-package app.alexanastasyev.planner.ui.screens.create
+package app.alexanastasyev.planner.ui.screens.create_edit
 
 import app.alexanastasyev.planner.R
 import app.alexanastasyev.planner.database.AppDatabase
@@ -7,7 +7,7 @@ import app.alexanastasyev.planner.ui.Presenter
 import app.alexanastasyev.planner.utils.BackgroundTaskExecutor
 import app.alexanastasyev.planner.utils.NotesRepository
 
-class CreateNotePresenter(private val view: CreateNoteView) : Presenter() {
+class CreateEditPresenter(private val view: CreateEditView) : Presenter() {
 
     override fun init() {
         view.setTitle(view.provideContext().getString(R.string.create_note))
