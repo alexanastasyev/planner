@@ -1,7 +1,7 @@
 package app.alexanastasyev.planner.ui.screens.home
 
+import app.alexanastasyev.planner.database.AppDatabase
 import app.alexanastasyev.planner.domain.Note
-import app.alexanastasyev.planner.utils.DatabaseUtils
 import app.alexanastasyev.planner.ui.Presenter
 import app.alexanastasyev.planner.utils.BackgroundTaskExecutor
 import java.text.SimpleDateFormat
@@ -29,7 +29,7 @@ class HomePresenter(private val view: HomeView) : Presenter() {
     private fun loadNotesFromDatabase() {
         val notes: MutableList<Note> = mutableListOf()
         BackgroundTaskExecutor.executeBackgroundTask({
-            val database = DatabaseUtils.getDatabase(view.provideContext())
+            val database = AppDatabase.getInstance(view.provideContext())
             notes.addAll(database.noteDao().getAll())
         }, {
             view.showNotes(notes)

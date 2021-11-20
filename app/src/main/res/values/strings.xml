@@ -15,4 +15,5 @@
     <string name="low">low</string>
     <string name="medium">medium</string>
     <string name="high">high</string>
+    <string name="note_text_is_empty">Note text is empty!</string>
 </resources>
