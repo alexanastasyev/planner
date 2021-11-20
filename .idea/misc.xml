@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Coding/AndroidProjects/Planner/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Coding/AndroidProjects/Planner/app/src/main/res/layout/dialog_confirm_delete.xml" value="0.2427536231884058" />
         <entry key="..\:/Coding/AndroidProjects/Planner/app/src/main/res/layout/dialog_date.xml" value="0.2427536231884058" />
+        <entry key="..\:/Coding/AndroidProjects/Planner/app/src/main/res/layout/dialog_date_time.xml" value="0.2427536231884058" />
         <entry key="..\:/Coding/AndroidProjects/Planner/app/src/main/res/layout/item_note.xml" value="0.2" />
         <entry key="..\:/Coding/AndroidProjects/Planner/app/src/main/res/layout/menu_fragment.xml" value="0.2" />
         <entry key="..\:/Coding/AndroidProjects/Planner/app/src/main/res/layout/menu_main.xml" value="0.2223731884057971" />

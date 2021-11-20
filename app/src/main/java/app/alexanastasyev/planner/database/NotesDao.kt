@@ -4,12 +4,15 @@ import androidx.room.*
 import app.alexanastasyev.planner.domain.Note
 
 @Dao
-interface NoteDao {
+interface NotesDao {
     @Query("SELECT * FROM note ORDER BY date DESC")
     fun getAll(): List<Note>
 
     @Query("SELECT * FROM note WHERE id = :id")
     fun getById(id: Long): Note
+
+    @Query("SELECT EXISTS(SELECT * FROM note WHERE id = :id)")
+    fun exists(id: Long): Boolean
 
     @Insert
     fun insert(note: Note)

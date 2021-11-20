@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import app.alexanastasyev.planner.MainActivity
 import app.alexanastasyev.planner.databinding.ScreenNoteBinding
 
@@ -20,7 +22,21 @@ class NoteScreen : Fragment(), NoteView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setOnDeleteClickListener()
+        setOnEditClickListener()
         presenter.init()
+    }
+
+    private fun setOnDeleteClickListener() {
+        binding.buttonDeleteNote.setOnClickListener {
+            presenter.deleteClicked()
+        }
+    }
+
+    private fun setOnEditClickListener() {
+        binding.buttonEditNote.setOnClickListener {
+            presenter.editClicked()
+        }
     }
 
     override fun showText(text: String) {
@@ -37,6 +53,10 @@ class NoteScreen : Fragment(), NoteView {
 
     override fun provideContext(): Context {
         return requireContext()
+    }
+
+    override fun provideNavController(): NavController {
+        return findNavController()
     }
 
     override fun setTitle(title: String) {

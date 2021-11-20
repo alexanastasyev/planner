@@ -27,12 +27,33 @@
         android:id="@+id/noteScreen"
         android:name="app.alexanastasyev.planner.ui.screens.note.NoteScreen"
         android:label="NoteScreen"
-        tools:layout="@layout/screen_note"/>
+        tools:layout="@layout/screen_note">
+        <action
+            android:id="@+id/action_noteScreen_to_editNoteScreen"
+            app:destination="@id/editNoteScreen" />
+        <action
+            android:id="@+id/action_noteScreen_to_confirmDeleteDialog"
+            app:destination="@id/confirmDeleteDialog" />
+    </fragment>
     <dialog
         android:id="@+id/dateTimePickerDialog"
         android:name="app.alexanastasyev.planner.ui.dialogs.DateTimePickerDialog"
         android:label="DateTimePickerDialog"
         tools:layout="@layout/dialog_date_time">
     </dialog>
+    <fragment
+        android:id="@+id/editNoteScreen"
+        android:name="app.alexanastasyev.planner.ui.screens.edit.EditNoteScreen"
+        android:label="EditNoteScreen"
+        tools:layout="@layout/screen_create_note">
+        <action
+            android:id="@+id/action_editNoteScreen_to_dateTimePickerDialog"
+            app:destination="@id/dateTimePickerDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/confirmDeleteDialog"
+        android:name="app.alexanastasyev.planner.ui.dialogs.ConfirmDeleteDialog"
+        android:label="ConfirmDeleteDialog"
+        tools:layout="@layout/dialog_confirm_delete"/>
 
 </navigation>

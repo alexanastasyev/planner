@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import app.alexanastasyev.planner.R
@@ -26,7 +25,25 @@ class DateTimePickerDialog : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.timePicker.setIs24HourView(true)
+        initPickers()
         setOnButtonSaveClickListener()
+    }
+
+    private fun initPickers() {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = NavigationUtils.currentTime
+        binding.datePicker.updateDate(
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            binding.timePicker.minute = calendar.get(Calendar.MINUTE)
+            binding.timePicker.hour = calendar.get(Calendar.HOUR_OF_DAY)
+        } else {
+            binding.timePicker.currentMinute = calendar.get(Calendar.MINUTE)
+            binding.timePicker.currentHour = calendar.get(Calendar.HOUR_OF_DAY)
+        }
     }
 
     private fun setOnButtonSaveClickListener() {
@@ -44,7 +61,7 @@ class DateTimePickerDialog : DialogFragment() {
             }
 
             NavigationUtils.onTimeSelected(calendar.timeInMillis)
-            findNavController().navigateUp()
+            this.dismiss()
         }
     }
 }

@@ -15,7 +15,7 @@ import app.alexanastasyev.planner.domain.Note
     PriorityConverter::class
 )
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun noteDao(): NoteDao
+    abstract fun noteDao(): NotesDao
 
     companion object {
         private const val DATABASE_NAME = "notes"

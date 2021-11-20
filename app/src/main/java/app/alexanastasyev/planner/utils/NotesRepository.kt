@@ -20,6 +20,10 @@ object NotesRepository {
         this.currentNote = this.notes[position]
     }
 
+    fun setCurrentNote(note: Note) {
+        this.currentNote = note
+    }
+
     fun getCurrentNote(): Note {
         return this.currentNote
     }

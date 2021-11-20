@@ -2,7 +2,6 @@ package app.alexanastasyev.planner.ui.screens.create
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,15 +18,14 @@ import androidx.navigation.fragment.findNavController
 import app.alexanastasyev.planner.R
 import app.alexanastasyev.planner.utils.NavigationUtils
 
-
-class CreateNoteScreen : Fragment(), CreateNoteView {
+open class CreateNoteScreen : Fragment(), CreateNoteView {
     companion object {
         private const val DATE_TIME_FORMAT = "dd.MM.yyyy, HH:mm"
     }
 
-    private lateinit var binding: ScreenCreateNoteBinding
-    private val presenter = CreateNotePresenter(this)
-    private var time = System.currentTimeMillis()
+    protected lateinit var binding: ScreenCreateNoteBinding
+    protected val presenter = CreateNotePresenter(this)
+    protected var time = System.currentTimeMillis()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = ScreenCreateNoteBinding.inflate(inflater)
@@ -43,7 +41,7 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
         setOnButtonSaveClickListener()
     }
 
-    private fun initTime() {
+    protected fun initTime() {
         binding.textViewTime.text = DateFormatter.formatDate(time, DATE_TIME_FORMAT)
     }
 
@@ -71,7 +69,8 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
                 this.time = time
                 initTime()
             }
-            findNavController().navigate(R.id.action_createNoteScreen_to_dateTimePickerDialog)
+            NavigationUtils.currentTime = this.time
+            findNavController().navigate(R.id.dateTimePickerDialog)
         }
     }
 
@@ -89,7 +88,7 @@ class CreateNoteScreen : Fragment(), CreateNoteView {
             } else {
                 null
             }
-            presenter.saveNote(
+            presenter.save(
                 Note(
                     text = text,
                     date = date,

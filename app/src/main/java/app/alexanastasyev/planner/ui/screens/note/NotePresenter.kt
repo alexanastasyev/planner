@@ -1,9 +1,12 @@
 package app.alexanastasyev.planner.ui.screens.note
 
 import app.alexanastasyev.planner.R
+import app.alexanastasyev.planner.database.AppDatabase
 import app.alexanastasyev.planner.domain.Note
 import app.alexanastasyev.planner.ui.Presenter
+import app.alexanastasyev.planner.utils.BackgroundTaskExecutor
 import app.alexanastasyev.planner.utils.DateFormatter
+import app.alexanastasyev.planner.utils.NavigationUtils
 import app.alexanastasyev.planner.utils.NotesRepository
 
 class NotePresenter(private val view: NoteView) : Presenter() {
@@ -15,6 +18,24 @@ class NotePresenter(private val view: NoteView) : Presenter() {
 
     override fun init() {
         showNoteInfo(NotesRepository.getCurrentNote())
+    }
+
+    fun deleteClicked() {
+        NavigationUtils.onDeleteConfirm = {
+            BackgroundTaskExecutor.executeBackgroundTask(
+                task = {
+                    AppDatabase.getInstance(view.provideContext()).noteDao().delete(NotesRepository.getCurrentNote())
+                },
+                onFinish = {
+                    view.provideNavController().popBackStack(R.id.homeScreen, false)
+                }
+            )
+        }
+        view.provideNavController().navigate(R.id.action_noteScreen_to_confirmDeleteDialog)
+    }
+
+    fun editClicked() {
+        view.provideNavController().navigate(R.id.action_noteScreen_to_editNoteScreen)
     }
 
     private fun showNoteInfo(note: Note) {
