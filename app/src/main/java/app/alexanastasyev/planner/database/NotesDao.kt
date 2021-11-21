@@ -5,7 +5,7 @@ import app.alexanastasyev.planner.domain.Note
 
 @Dao
 interface NotesDao {
-    @Query("SELECT * FROM note ORDER BY date DESC")
+    @Query("SELECT * FROM note ORDER BY date ASC")
     fun getAll(): List<Note>
 
     @Query("SELECT * FROM note WHERE id = :id")

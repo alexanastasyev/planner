@@ -31,7 +31,7 @@ class CreateEditPresenter(private val view: CreateEditView) : Presenter() {
                 AppDatabase.getInstance(view.provideContext()).noteDao().insert(note)
             },
             onFinish = {
-                view.provideNavController().navigateUp()
+                view.provideNavController().popBackStack(R.id.homeScreen, false)
             }
         )
     }
@@ -43,7 +43,7 @@ class CreateEditPresenter(private val view: CreateEditView) : Presenter() {
                 NotesController.setCurrentNote(note)
             },
             onFinish = {
-                view.provideNavController().navigateUp()
+                view.provideNavController().popBackStack(R.id.noteScreen, false)
             }
         )
     }
