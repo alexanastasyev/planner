@@ -1,4 +1,4 @@
-package app.alexanastasyev.planner
+package app.alexanastasyev.planner.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
+import app.alexanastasyev.planner.R
 import app.alexanastasyev.planner.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -49,13 +50,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openHomeScreen() {
-        binding.navHostFragment.findNavController().popBackStack()
+        binding.navHostFragment.findNavController().popBackStack(R.id.homeScreen, true)
         binding.navHostFragment.findNavController().navigate(R.id.homeScreen)
         hideMenu()
     }
 
     private fun openCreateNoteScreen() {
-        binding.navHostFragment.findNavController().popBackStack()
+        binding.navHostFragment.findNavController().popBackStack(R.id.createNoteScreen, true)
         binding.navHostFragment.findNavController().navigate(R.id.createNoteScreen)
         hideMenu()
     }

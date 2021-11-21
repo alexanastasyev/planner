@@ -2,7 +2,7 @@ package app.alexanastasyev.planner.utils
 
 import app.alexanastasyev.planner.domain.Note
 
-object NotesRepository {
+object NotesController {
     private val notes: MutableList<Note> = mutableListOf()
 
     private lateinit var currentNote: Note

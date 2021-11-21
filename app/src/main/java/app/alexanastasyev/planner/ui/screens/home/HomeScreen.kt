@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import app.alexanastasyev.planner.MainActivity
+import app.alexanastasyev.planner.ui.MainActivity
 import app.alexanastasyev.planner.databinding.ScreenHomeBinding
 import app.alexanastasyev.planner.domain.Note
 import com.google.android.material.snackbar.Snackbar

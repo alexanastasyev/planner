@@ -7,7 +7,7 @@ import app.alexanastasyev.planner.ui.Presenter
 import app.alexanastasyev.planner.utils.BackgroundTaskExecutor
 import app.alexanastasyev.planner.utils.DateFormatter
 import app.alexanastasyev.planner.utils.NavigationUtils
-import app.alexanastasyev.planner.utils.NotesRepository
+import app.alexanastasyev.planner.utils.NotesController
 
 class NotePresenter(private val view: NoteView) : Presenter() {
 
@@ -17,14 +17,14 @@ class NotePresenter(private val view: NoteView) : Presenter() {
     }
 
     override fun init() {
-        showNoteInfo(NotesRepository.getCurrentNote())
+        showNoteInfo(NotesController.getCurrentNote())
     }
 
     fun deleteClicked() {
         NavigationUtils.onDeleteConfirm = {
             BackgroundTaskExecutor.executeBackgroundTask(
                 task = {
-                    AppDatabase.getInstance(view.provideContext()).noteDao().delete(NotesRepository.getCurrentNote())
+                    AppDatabase.getInstance(view.provideContext()).noteDao().delete(NotesController.getCurrentNote())
                 },
                 onFinish = {
                     view.provideNavController().popBackStack(R.id.homeScreen, false)

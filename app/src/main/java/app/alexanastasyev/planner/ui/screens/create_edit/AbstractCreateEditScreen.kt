@@ -9,7 +9,7 @@ import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import app.alexanastasyev.planner.MainActivity
+import app.alexanastasyev.planner.ui.MainActivity
 import app.alexanastasyev.planner.R
 import app.alexanastasyev.planner.databinding.ScreenCreateEditNoteBinding
 import app.alexanastasyev.planner.utils.DateFormatter

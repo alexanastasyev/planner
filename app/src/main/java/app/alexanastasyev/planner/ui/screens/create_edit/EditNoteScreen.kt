@@ -4,11 +4,11 @@ import android.view.View
 import android.widget.TextView
 import app.alexanastasyev.planner.domain.Note
 import app.alexanastasyev.planner.domain.Priority
-import app.alexanastasyev.planner.utils.NotesRepository
+import app.alexanastasyev.planner.utils.NotesController
 
 class EditNoteScreen : AbstractCreateEditScreen() {
     override fun fillViews() {
-        val note = NotesRepository.getCurrentNote()
+        val note = NotesController.getCurrentNote()
         binding.editTextNoteText.setText(note.text, TextView.BufferType.EDITABLE)
         note.date?.let { date ->
             this.time = date
@@ -42,7 +42,7 @@ class EditNoteScreen : AbstractCreateEditScreen() {
                 date = date,
                 priority = priority
             )
-            note.id = NotesRepository.getCurrentNote().id
+            note.id = NotesController.getCurrentNote().id
             presenter.save(note)
         }
     }

@@ -5,7 +5,7 @@ import app.alexanastasyev.planner.database.AppDatabase
 import app.alexanastasyev.planner.domain.Note
 import app.alexanastasyev.planner.ui.Presenter
 import app.alexanastasyev.planner.utils.BackgroundTaskExecutor
-import app.alexanastasyev.planner.utils.NotesRepository
+import app.alexanastasyev.planner.utils.NotesController
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -22,7 +22,7 @@ class HomePresenter(private val view: HomeView) : Presenter() {
     }
 
     fun noteClicked(position: Int) {
-        NotesRepository.setCurrentNote(position)
+        NotesController.setCurrentNote(position)
         view.provideNavController().navigate(R.id.action_homeScreen_to_noteScreen)
     }
 
@@ -39,7 +39,7 @@ class HomePresenter(private val view: HomeView) : Presenter() {
             val database = AppDatabase.getInstance(view.provideContext())
             notes.addAll(database.noteDao().getAll())
         }, {
-            NotesRepository.setNotes(notes)
+            NotesController.setNotes(notes)
             view.showNotes(notes)
         })
     }

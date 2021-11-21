@@ -5,7 +5,7 @@ import app.alexanastasyev.planner.database.AppDatabase
 import app.alexanastasyev.planner.domain.Note
 import app.alexanastasyev.planner.ui.Presenter
 import app.alexanastasyev.planner.utils.BackgroundTaskExecutor
-import app.alexanastasyev.planner.utils.NotesRepository
+import app.alexanastasyev.planner.utils.NotesController
 
 class CreateEditPresenter(private val view: CreateEditView) : Presenter() {
 
@@ -40,7 +40,7 @@ class CreateEditPresenter(private val view: CreateEditView) : Presenter() {
         BackgroundTaskExecutor.executeBackgroundTask(
             task = {
                 AppDatabase.getInstance(view.provideContext()).noteDao().update(note)
-                NotesRepository.setCurrentNote(note)
+                NotesController.setCurrentNote(note)
             },
             onFinish = {
                 view.provideNavController().navigateUp()
