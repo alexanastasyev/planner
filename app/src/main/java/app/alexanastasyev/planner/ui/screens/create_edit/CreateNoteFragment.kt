@@ -3,7 +3,7 @@ package app.alexanastasyev.planner.ui.screens.create_edit
 import app.alexanastasyev.planner.domain.Note
 import app.alexanastasyev.planner.domain.Priority
 
-open class CreateNoteScreen : AbstractCreateEditScreen() {
+open class CreateNoteFragment : AbstractCreateEditFragment() {
 
     override fun fillViews() {
     }

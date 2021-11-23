@@ -9,20 +9,25 @@ import android.widget.CheckBox
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import app.alexanastasyev.planner.App
 import app.alexanastasyev.planner.ui.MainActivity
 import app.alexanastasyev.planner.R
 import app.alexanastasyev.planner.databinding.ScreenCreateEditNoteBinding
 import app.alexanastasyev.planner.utils.DateFormatter
 import app.alexanastasyev.planner.utils.NavigationUtils
 import com.google.android.material.snackbar.Snackbar
+import javax.inject.Inject
 
-abstract class AbstractCreateEditScreen : Fragment(), CreateEditView {
+abstract class AbstractCreateEditFragment : Fragment(), CreateEditView {
     companion object {
         private const val DATE_TIME_FORMAT = "dd.MM.yyyy, HH:mm"
     }
 
+    @Inject
+    lateinit var createEditComponentBuider: CreateEditComponent.Builder
+
+    protected lateinit var presenter: CreateEditPresenter
     protected lateinit var binding: ScreenCreateEditNoteBinding
-    protected val presenter = CreateEditPresenter(this)
     protected var time = System.currentTimeMillis()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -32,6 +37,9 @@ abstract class AbstractCreateEditScreen : Fragment(), CreateEditView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        App.appComponent.injectCreateEditFragment(this)
+        presenter = createEditComponentBuider.view(this).build().getCreateEditPresenter()
+
         presenter.init()
         fillViews()
         initTime()

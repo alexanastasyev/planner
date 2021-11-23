@@ -8,15 +8,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import app.alexanastasyev.planner.App
 import app.alexanastasyev.planner.ui.MainActivity
 import app.alexanastasyev.planner.databinding.ScreenHomeBinding
 import app.alexanastasyev.planner.domain.Note
 import com.google.android.material.snackbar.Snackbar
+import javax.inject.Inject
 
-class HomeScreen : Fragment(), HomeView {
+class HomeFragment : Fragment(), HomeView {
+
+    @Inject
+    lateinit var homeComponentBuilder: HomeComponent.Builder
+
+    private lateinit var presenter: HomePresenter
 
     private lateinit var binding: ScreenHomeBinding
-    private val presenter = HomePresenter(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = ScreenHomeBinding.inflate(inflater)
@@ -25,6 +31,8 @@ class HomeScreen : Fragment(), HomeView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        App.appComponent.injectHomeScreen(this)
+        presenter = homeComponentBuilder.view(this).build().getHomePresenter()
         presenter.init()
     }
 

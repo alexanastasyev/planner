@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeScreen"
-        android:name="app.alexanastasyev.planner.ui.screens.home.HomeScreen"
+        android:name="app.alexanastasyev.planner.ui.screens.home.HomeFragment"
         android:label="HomeScreen"
         tools:layout="@layout/screen_home">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/createNoteScreen"
-        android:name="app.alexanastasyev.planner.ui.screens.create_edit.CreateNoteScreen"
+        android:name="app.alexanastasyev.planner.ui.screens.create_edit.CreateNoteFragment"
         android:label="CreateNoteScreen"
         tools:layout="@layout/screen_create_edit_note">
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/noteScreen"
-        android:name="app.alexanastasyev.planner.ui.screens.note.NoteScreen"
+        android:name="app.alexanastasyev.planner.ui.screens.note.NoteFragment"
         android:label="NoteScreen"
         tools:layout="@layout/screen_note">
         <action
@@ -43,7 +43,7 @@
     </dialog>
     <fragment
         android:id="@+id/editNoteScreen"
-        android:name="app.alexanastasyev.planner.ui.screens.create_edit.EditNoteScreen"
+        android:name="app.alexanastasyev.planner.ui.screens.create_edit.EditNoteFragment"
         android:label="EditNoteScreen"
         tools:layout="@layout/screen_create_edit_note">
         <action

@@ -8,12 +8,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import app.alexanastasyev.planner.App
 import app.alexanastasyev.planner.ui.MainActivity
 import app.alexanastasyev.planner.databinding.ScreenNoteBinding
+import javax.inject.Inject
 
-class NoteScreen : Fragment(), NoteView {
+class NoteFragment : Fragment(), NoteView {
+
+    @Inject
+    lateinit var noteComponentBuilder: NoteComponent.Builder
+
+    private lateinit var presenter: NotePresenter
+
     private lateinit var binding: ScreenNoteBinding
-    private val presenter = NotePresenter(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = ScreenNoteBinding.inflate(inflater)
@@ -22,6 +29,9 @@ class NoteScreen : Fragment(), NoteView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        App.appComponent.injectNoteScreen(this)
+        presenter = noteComponentBuilder.view(this).build().getNotePresenter()
+
         setOnDeleteClickListener()
         setOnEditClickListener()
         presenter.init()

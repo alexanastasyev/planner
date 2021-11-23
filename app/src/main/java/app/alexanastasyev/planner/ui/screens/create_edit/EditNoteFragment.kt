@@ -6,7 +6,7 @@ import app.alexanastasyev.planner.domain.Note
 import app.alexanastasyev.planner.domain.Priority
 import app.alexanastasyev.planner.utils.NotesController
 
-class EditNoteScreen : AbstractCreateEditScreen() {
+class EditNoteFragment : AbstractCreateEditFragment() {
     override fun fillViews() {
         val note = NotesController.getCurrentNote()
         binding.editTextNoteText.setText(note.text, TextView.BufferType.EDITABLE)

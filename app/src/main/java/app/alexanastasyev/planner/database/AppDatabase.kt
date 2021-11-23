@@ -9,7 +9,8 @@ import app.alexanastasyev.planner.domain.Note
 
 @Database(
     entities = [Note::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(
     PriorityConverter::class
