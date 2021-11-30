@@ -1,5 +1,6 @@
 package app.alexanastasyev.planner.ui.screens.home
 
+import app.alexanastasyev.planner.utils.BackgroundTaskExecutor
 import dagger.Module
 import dagger.Provides
 
@@ -7,7 +8,7 @@ import dagger.Provides
 class HomeModule {
 
     @Provides
-    fun getHomePresenter(homeView: HomeView): HomePresenter {
-        return HomePresenter(homeView)
+    fun getHomePresenter(homeView: HomeView, backgroundTaskExecutor: BackgroundTaskExecutor): HomePresenter {
+        return HomePresenter(homeView, backgroundTaskExecutor)
     }
 }

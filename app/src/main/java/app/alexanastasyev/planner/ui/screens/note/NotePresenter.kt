@@ -9,7 +9,11 @@ import app.alexanastasyev.planner.utils.DateFormatter
 import app.alexanastasyev.planner.utils.NavigationUtils
 import app.alexanastasyev.planner.utils.NotesController
 
-class NotePresenter(private val view: NoteView) : Presenter() {
+class NotePresenter (
+    private val view: NoteView,
+    private val dateFormatter: DateFormatter,
+    private val backgroundTaskExecutor: BackgroundTaskExecutor
+) : Presenter() {
 
     companion object {
         private const val DATE_FORMAT = "dd.MM.yyyy"
@@ -22,7 +26,7 @@ class NotePresenter(private val view: NoteView) : Presenter() {
 
     fun deleteClicked() {
         NavigationUtils.onDeleteConfirm = {
-            BackgroundTaskExecutor.executeBackgroundTask(
+            backgroundTaskExecutor.executeBackgroundTask(
                 task = {
                     AppDatabase.getInstance(view.provideContext()).noteDao().delete(NotesController.getCurrentNote())
                 },
@@ -42,8 +46,8 @@ class NotePresenter(private val view: NoteView) : Presenter() {
         view.setTitle(view.provideContext().getString(R.string.note_view))
         view.showText(note.text)
         if (note.date != null) {
-            view.showDate(DateFormatter.formatDate(note.date, DATE_FORMAT))
-            view.showTime(DateFormatter.formatDate(note.date, TIME_FORMAT))
+            view.showDate(dateFormatter.formatDate(note.date, DATE_FORMAT))
+            view.showTime(dateFormatter.formatDate(note.date, TIME_FORMAT))
         }
     }
 }

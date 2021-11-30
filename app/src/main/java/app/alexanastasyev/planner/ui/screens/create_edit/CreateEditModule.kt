@@ -1,5 +1,7 @@
 package app.alexanastasyev.planner.ui.screens.create_edit
 
+import app.alexanastasyev.planner.utils.BackgroundTaskExecutor
+import app.alexanastasyev.planner.utils.NotesController
 import dagger.Module
 import dagger.Provides
 
@@ -7,7 +9,10 @@ import dagger.Provides
 class CreateEditModule {
 
     @Provides
-    fun getCreateEditPresenter(createEditView: CreateEditView): CreateEditPresenter {
-        return CreateEditPresenter(createEditView)
+    fun getCreateEditPresenter(
+        createEditView: CreateEditView,
+        backgroundTaskExecutor: BackgroundTaskExecutor
+    ): CreateEditPresenter {
+        return CreateEditPresenter(createEditView, backgroundTaskExecutor)
     }
 }

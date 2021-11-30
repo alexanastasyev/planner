@@ -1,8 +1,9 @@
 package app.alexanastasyev.planner.utils
 
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-object BackgroundTaskExecutor {
+class BackgroundTaskExecutor @Inject constructor() {
     private var job = Job()
 
     fun executeBackgroundTask(

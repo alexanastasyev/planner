@@ -24,6 +24,9 @@ abstract class AbstractCreateEditFragment : Fragment(), CreateEditView {
     }
 
     @Inject
+    lateinit var dateFormatter: DateFormatter
+
+    @Inject
     lateinit var createEditComponentBuider: CreateEditComponent.Builder
 
     protected lateinit var presenter: CreateEditPresenter
@@ -52,7 +55,7 @@ abstract class AbstractCreateEditFragment : Fragment(), CreateEditView {
     abstract fun setOnButtonSaveClickListener()
 
     protected fun initTime() {
-        binding.textViewTime.text = DateFormatter.formatDate(time, DATE_TIME_FORMAT)
+        binding.textViewTime.text = dateFormatter.formatDate(time, DATE_TIME_FORMAT)
     }
 
     private fun setOnCheckBoxTimeListener() {

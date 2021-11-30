@@ -7,7 +7,10 @@ import app.alexanastasyev.planner.ui.Presenter
 import app.alexanastasyev.planner.utils.BackgroundTaskExecutor
 import app.alexanastasyev.planner.utils.NotesController
 
-class CreateEditPresenter(private val view: CreateEditView) : Presenter() {
+class CreateEditPresenter (
+    private val view: CreateEditView,
+    private val backgroundTaskExecutor: BackgroundTaskExecutor
+) : Presenter() {
 
     override fun init() {
         view.setTitle(view.provideContext().getString(R.string.create_note))
@@ -26,7 +29,7 @@ class CreateEditPresenter(private val view: CreateEditView) : Presenter() {
     }
 
     private fun saveNote(note: Note) {
-        BackgroundTaskExecutor.executeBackgroundTask(
+        backgroundTaskExecutor.executeBackgroundTask(
             task = {
                 AppDatabase.getInstance(view.provideContext()).noteDao().insert(note)
             },
@@ -37,7 +40,7 @@ class CreateEditPresenter(private val view: CreateEditView) : Presenter() {
     }
 
     private fun updateNote(note: Note) {
-        BackgroundTaskExecutor.executeBackgroundTask(
+        backgroundTaskExecutor.executeBackgroundTask(
             task = {
                 AppDatabase.getInstance(view.provideContext()).noteDao().update(note)
                 NotesController.setCurrentNote(note)

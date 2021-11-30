@@ -9,7 +9,10 @@ import app.alexanastasyev.planner.utils.NotesController
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HomePresenter(private val view: HomeView) : Presenter() {
+class HomePresenter(
+    private val view: HomeView,
+    private val backgroundTaskExecutor: BackgroundTaskExecutor
+) : Presenter() {
 
     companion object {
         private const val DATE_FORMAT = "d MMMM"
@@ -35,7 +38,7 @@ class HomePresenter(private val view: HomeView) : Presenter() {
 
     private fun loadNotesFromDatabase() {
         val notes: MutableList<Note> = mutableListOf()
-        BackgroundTaskExecutor.executeBackgroundTask({
+        backgroundTaskExecutor.executeBackgroundTask({
             val database = AppDatabase.getInstance(view.provideContext())
             notes.addAll(database.noteDao().getAll())
         }, {

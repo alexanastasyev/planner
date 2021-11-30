@@ -2,9 +2,12 @@ package app.alexanastasyev.planner.utils
 
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-object DateFormatter {
-    private const val EMPTY_STRING = ""
+class DateFormatter @Inject constructor() {
+    companion object {
+        private const val EMPTY_STRING = ""
+    }
 
     fun formatDate(date: Long?, template: String): String {
         return if (date == null) {
